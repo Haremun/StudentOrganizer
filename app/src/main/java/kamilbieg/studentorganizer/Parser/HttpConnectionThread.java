@@ -12,7 +12,7 @@ import java.net.URL;
 
 public class HttpConnectionThread extends Thread {
 
-    private String input;
+    private BufferedReader bufferedReader;
     private Activity activity;
 
     public HttpConnectionThread(Activity activity){
@@ -24,14 +24,18 @@ public class HttpConnectionThread extends Thread {
         final String path = "http://api.ukw.edu.pl/services/tt/upcoming_ical?lang=pl&user_id=56721&key=Y4zJPByUy3Nh66vmYAfB";
         try {
             URL url = new URL(path);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            InputStream inputStream = connection.getInputStream();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection(); //Connect to server
+            InputStream inputStream = connection.getInputStream(); //Get input stream
             InputStreamReader isReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(isReader);
-            String line;
-            while ( (line = bufferedReader.readLine()) != null){
-                input += line;
+            bufferedReader = new BufferedReader(isReader); //Load stream to buffered reader
+
+            ICalParser iCalParser = new ICalParser();
+            try {
+                iCalParser.parseICalStringToList(bufferedReader, null);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -44,7 +48,7 @@ public class HttpConnectionThread extends Thread {
 
     }
 
-    public String getInput() {
-        return input;
+    public BufferedReader getBufferedReader() {
+        return bufferedReader;
     }
 }
