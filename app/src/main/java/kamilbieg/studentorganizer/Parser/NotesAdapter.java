@@ -1,7 +1,7 @@
 package kamilbieg.studentorganizer.Parser;
 
 import android.app.Activity;
-import android.provider.CalendarContract;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import kamilbieg.studentorganizer.DataBase.SQLiteHelper;
 import kamilbieg.studentorganizer.Note;
 import kamilbieg.studentorganizer.Adapters.RecyclerViewAdapter;
 
@@ -31,11 +32,14 @@ public class NotesAdapter implements NotesLoaderCallback{
         NotesLoaderThread notesLoaderThread = new NotesLoaderThread(this);
         notesLoaderThread.start();
 
+        SQLiteHelper db = new SQLiteHelper(mActivity);
+        SQLiteDatabase database = db.getWritableDatabase();
+
     }
 
 
     @Override
-    public void onLoad(final List<Note> noteList) {
+    public void onLoad(List<Note> noteList) {
 
         final List<Note> mNoteList = getFilteredList(noteList);
 

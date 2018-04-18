@@ -24,6 +24,7 @@ public class ICalParser {
             if(line.length() > 11){
                 if(line.substring(0, 12).equals("BEGIN:VEVENT")){
                     temp = new Note();
+                    temp.setmNoteType("Study"); //Note from student schedule
                     count = 0;
                     Log.i("ICalParser", "New Object------------------");
                     continue;

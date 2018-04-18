@@ -8,6 +8,7 @@ public class Note {
     private String mStartHour = "";
     private int mStopHour = 0;
     private String mDescription = "";
+    private String mNoteType;
 
     public void setType(String type){
         mType = type;
@@ -31,6 +32,14 @@ public class Note {
 
     public void setDescription(String mDescription) {
         this.mDescription = mDescription;
+    }
+
+    public void setmNoteType(String mNoteType) {
+        this.mNoteType = mNoteType;
+    }
+
+    public String getmNoteType() {
+        return mNoteType;
     }
 
     public String getType() {

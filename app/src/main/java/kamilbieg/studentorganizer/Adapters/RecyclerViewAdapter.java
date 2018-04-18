@@ -48,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
         String type = note.getType();
         if(type.equals("WYK"))
-            ((MyViewHolder) holder).getmType().setTextColor(0xFF3030FF);
+            ((MyViewHolder) holder).getmType().setTextColor(0xFF3030F0);
         else
             ((MyViewHolder) holder).getmType().setTextColor(0xFFF03030);
         ((MyViewHolder) holder).getmType().setText(type);

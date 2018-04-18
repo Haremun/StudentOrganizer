@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         tabLayout.addTab(tabLayout.newTab().setText("Notes"));
-        tabLayout.addTab(tabLayout.newTab().setText("Study"));
-        tabLayout.addTab(tabLayout.newTab().setText("Arch"));
+        tabLayout.addTab(tabLayout.newTab().setText("Zajęcia"));
+        tabLayout.addTab(tabLayout.newTab().setText("Archiwum"));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
