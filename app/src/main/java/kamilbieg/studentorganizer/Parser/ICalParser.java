@@ -36,7 +36,7 @@ public class ICalParser {
                 //Log.i("ICalParser", tempString.length()+"");
             } else if(count == 1 && temp != null){
                 temp.setDate(Integer.valueOf(line.substring(24, 32)));
-                temp.setStartHour(Integer.valueOf(line.substring(33, line.length())));
+                temp.setStartHour(line.substring(33, line.length()));
                 Log.i("ICalParser", line.substring(33, line.length()));
             } else if(count == 2 && temp != null){
                 temp.setStopHour(Integer.valueOf(line.substring(31, line.length())));

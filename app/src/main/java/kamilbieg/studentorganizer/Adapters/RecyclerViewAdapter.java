@@ -1,5 +1,6 @@
 package kamilbieg.studentorganizer.Adapters;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import kamilbieg.studentorganizer.MyViewHolder;
 import kamilbieg.studentorganizer.Note;
 import kamilbieg.studentorganizer.R;
 
@@ -21,15 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
     private List<Note> mNoteList;
     //private RecyclerView mRecyclerView;
 
-    private class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView mTitle;
-
-        public MyViewHolder(View view) {
-            super(view);
-            mTitle = (TextView) view.findViewById(R.id.card_title);
-        }
-    }
 
     public RecyclerViewAdapter(List<Note> noteList){
 
@@ -52,7 +46,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
         Note note = mNoteList.get(position);
 
-        ((MyViewHolder) holder).mTitle.setText(note.getName());
+        String type = note.getType();
+        if(type.equals("WYK"))
+            ((MyViewHolder) holder).getmType().setTextColor(0xFF3030FF);
+        else
+            ((MyViewHolder) holder).getmType().setTextColor(0xFFF03030);
+        ((MyViewHolder) holder).getmType().setText(type);
+        ((MyViewHolder) holder).getmDesc().setText(note.getDescription());
+        ((MyViewHolder) holder).getmName().setText(note.getName());
+        String tempHour = note.getStartHour();
+        String hour = tempHour.substring(0, 2) + ":" + tempHour.substring(2, 4);
+        ((MyViewHolder) holder).getmHour().setText(hour);
 
     }
 

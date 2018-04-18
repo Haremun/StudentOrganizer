@@ -5,7 +5,7 @@ public class Note {
     private String mType = "";
     private String mName = "";
     private int mDate = 0;
-    private int mStartHour = 0;
+    private String mStartHour = "";
     private int mStopHour = 0;
     private String mDescription = "";
 
@@ -21,7 +21,7 @@ public class Note {
         this.mDate = mDate;
     }
 
-    public void setStartHour(int mStartHour) {
+    public void setStartHour(String mStartHour) {
         this.mStartHour = mStartHour;
     }
 
@@ -45,7 +45,7 @@ public class Note {
         return mDate;
     }
 
-    public int getStartHour() {
+    public String getStartHour() {
         return mStartHour;
     }
 
