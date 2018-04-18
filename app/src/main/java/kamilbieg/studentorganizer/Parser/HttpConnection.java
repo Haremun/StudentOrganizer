@@ -10,17 +10,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HttpConnectionThread extends Thread {
+public class HttpConnection {
 
     private BufferedReader bufferedReader;
     private Activity activity;
 
-    public HttpConnectionThread(Activity activity){
-        this.activity = activity;
-    }
-
-    @Override
-    public void run() {
+    public void connect(){
         final String path = "http://api.ukw.edu.pl/services/tt/upcoming_ical?lang=pl&user_id=56721&key=Y4zJPByUy3Nh66vmYAfB";
         try {
             URL url = new URL(path);
@@ -29,26 +24,13 @@ public class HttpConnectionThread extends Thread {
             InputStreamReader isReader = new InputStreamReader(inputStream);
             bufferedReader = new BufferedReader(isReader); //Load stream to buffered reader
 
-            ICalParser iCalParser = new ICalParser();
-            try {
-                iCalParser.parseICalStringToList(bufferedReader, null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            });
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public BufferedReader getBufferedReader() {
+    public BufferedReader getInputFromSite() {
         return bufferedReader;
     }
 }

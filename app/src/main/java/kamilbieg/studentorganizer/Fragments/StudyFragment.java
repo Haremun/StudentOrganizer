@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import kamilbieg.studentorganizer.Parser.NotesAdapter;
 import kamilbieg.studentorganizer.R;
 
 
@@ -25,7 +27,13 @@ public class StudyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_study, container, false);
+        View view = inflater.inflate(R.layout.fragment_study, container, false);
+        ButterKnife.bind(this, view);
+
+        NotesAdapter notesAdapter = new NotesAdapter(getActivity());
+        notesAdapter.loadNotesToLayout(getActivity());
+
+        return view;
     }
 
 }

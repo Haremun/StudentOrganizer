@@ -1,15 +1,38 @@
 package kamilbieg.studentorganizer.Parser;
 
+import android.app.Activity;
+
 import java.util.LinkedList;
 import java.util.List;
 
 import kamilbieg.studentorganizer.Note;
 
-public class NotesAdapter {
+public class NotesAdapter implements NotesLoaderCallback{
 
-    List<Note> noteList;
+    private Activity mActivity;
 
-    public NotesAdapter(){
-        noteList = new LinkedList<>();
+    public NotesAdapter(Activity activity){
+
+        this.mActivity = activity;
+    }
+
+    public void loadNotesToLayout(Activity activity){
+
+        NotesLoader notesLoader = new NotesLoader(activity, this);
+        notesLoader.start();
+    }
+
+
+    @Override
+    public void onLoad(List<Note> noteList) {
+
+
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+
     }
 }

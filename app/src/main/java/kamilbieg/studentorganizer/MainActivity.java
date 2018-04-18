@@ -12,16 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.io.IOException;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kamilbieg.studentorganizer.Enums.Fragments;
 import kamilbieg.studentorganizer.Fragments.ArchFragment;
 import kamilbieg.studentorganizer.Fragments.NotesFragment;
 import kamilbieg.studentorganizer.Fragments.StudyFragment;
-import kamilbieg.studentorganizer.Parser.HttpConnectionThread;
-import kamilbieg.studentorganizer.Parser.ICalParser;
+import kamilbieg.studentorganizer.Parser.NotesAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,9 +78,6 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
-        HttpConnectionThread thread = new HttpConnectionThread(this);
-        thread.start();
 
     }
 

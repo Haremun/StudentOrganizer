@@ -12,8 +12,9 @@ import kamilbieg.studentorganizer.Note;
 public class ICalParser {
 
 
-    public void parseICalStringToList(BufferedReader bufferedReader, List<Note> noteList) throws IOException {
+    public List<Note> parseICalStringToList(BufferedReader bufferedReader) throws IOException {
 
+        List<Note> noteList = new LinkedList<>();
         String line;
         Note temp = null;
         int count = 0;
@@ -49,6 +50,7 @@ public class ICalParser {
 
             count++;
         }
+        return noteList;
 
     }
 }
