@@ -4,13 +4,20 @@ import android.app.Activity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
+
+import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
+import kamilbieg.studentorganizer.DataBase.DatabaseFunctions;
+import kamilbieg.studentorganizer.Note;
 
 public class NotesLoaderThread extends Thread {
 
     private NotesLoaderCallback mCallback;
+    private Activity mActivity;
 
-    public NotesLoaderThread(NotesLoaderCallback callback){
+    public NotesLoaderThread(Activity activity, NotesLoaderCallback callback){
         this.mCallback = callback;
+        this.mActivity = activity;
     }
 
     @Override
@@ -21,7 +28,10 @@ public class NotesLoaderThread extends Thread {
             httpConnection.connect();
             BufferedReader bufferedReader = httpConnection.getInputFromSite();
             ICalParser parser = new ICalParser();
-            mCallback.onLoad(parser.parseICalStringToList(bufferedReader));
+            List<Note> noteList = parser.parseICalStringToList(bufferedReader);
+            DatabaseFunctions databaseFunctions = new DatabaseFunctions();
+            databaseFunctions.addListToDatabase(mActivity, noteList);
+            mCallback.onLoad(noteList);
 
         } catch (IOException e) {
             e.printStackTrace();

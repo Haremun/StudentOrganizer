@@ -36,11 +36,11 @@ public class ICalParser {
                 Log.i("ICalParser", line.substring(14, line.length()));
                 //Log.i("ICalParser", tempString.length()+"");
             } else if(count == 1 && temp != null){
-                temp.setDate(Integer.valueOf(line.substring(24, 32)));
+                temp.setDate(line.substring(24, 32));
                 temp.setStartHour(line.substring(33, line.length()));
                 Log.i("ICalParser", line.substring(33, line.length()));
             } else if(count == 2 && temp != null){
-                temp.setStopHour(Integer.valueOf(line.substring(31, line.length())));
+                temp.setStopHour(line.substring(31, line.length()));
                 Log.i("ICalParser", line.substring(31, line.length()));
 
             } else if(count == 5 && temp != null){

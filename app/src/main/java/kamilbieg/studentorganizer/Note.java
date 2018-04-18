@@ -4,11 +4,11 @@ public class Note {
 
     private String mType = "";
     private String mName = "";
-    private int mDate = 0;
+    private String mDate = "";
     private String mStartHour = "";
-    private int mStopHour = 0;
+    private String mStopHour = "";
     private String mDescription = "";
-    private String mNoteType;
+    private String mNoteType = "";
 
     public void setType(String type){
         mType = type;
@@ -18,7 +18,7 @@ public class Note {
         this.mName = mName;
     }
 
-    public void setDate(int mDate) {
+    public void setDate(String mDate) {
         this.mDate = mDate;
     }
 
@@ -26,7 +26,7 @@ public class Note {
         this.mStartHour = mStartHour;
     }
 
-    public void setStopHour(int mStopHour) {
+    public void setStopHour(String mStopHour) {
         this.mStopHour = mStopHour;
     }
 
@@ -50,7 +50,7 @@ public class Note {
         return mName;
     }
 
-    public int getDate() {
+    public String getDate() {
         return mDate;
     }
 
@@ -58,7 +58,7 @@ public class Note {
         return mStartHour;
     }
 
-    public int getStopHour() {
+    public String getStopHour() {
         return mStopHour;
     }
 

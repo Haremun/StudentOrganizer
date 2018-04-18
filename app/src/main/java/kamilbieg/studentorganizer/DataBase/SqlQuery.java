@@ -6,13 +6,13 @@ public class SqlQuery {
 
         return "create table " + DatabaseStructure.TABLE_NAME + "(" +
                 "id integer primary key autoincrement," +
-                DatabaseStructure.COLUMN_NAME_TYPE + " string," +
-                DatabaseStructure.COLUMN_NAME_NAME + " string," +
-                DatabaseStructure.COLUMN_NAME_DATE + " string," +
-                DatabaseStructure.COLUMN_NAME_STARTHOUR + " string," +
-                DatabaseStructure.COLUMN_NAME_STOPTHOUR + " string," +
-                DatabaseStructure.COLUMN_NAME_DESC + " string," +
-                DatabaseStructure.COLUMN_NAME_NOTETYPE + " string);";
+                DatabaseStructure.COLUMN_NAME_TYPE + " text," +
+                DatabaseStructure.COLUMN_NAME_NAME + " text," +
+                DatabaseStructure.COLUMN_NAME_DATE + " text," +
+                DatabaseStructure.COLUMN_NAME_STARTHOUR + " text," +
+                DatabaseStructure.COLUMN_NAME_STOPTHOUR + " text," +
+                DatabaseStructure.COLUMN_NAME_DESC + " text," +
+                DatabaseStructure.COLUMN_NAME_NOTETYPE + " text);";
     }
 
     public String dropTable(){

@@ -1,6 +1,7 @@
 package kamilbieg.studentorganizer.Parser;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,11 +13,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import kamilbieg.studentorganizer.Callbacks.DatabaseLoaderCallback;
+import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
+import kamilbieg.studentorganizer.DataBase.DatabaseLoaderThread;
+import kamilbieg.studentorganizer.DataBase.DatabaseStructure;
 import kamilbieg.studentorganizer.DataBase.SQLiteHelper;
 import kamilbieg.studentorganizer.Note;
 import kamilbieg.studentorganizer.Adapters.RecyclerViewAdapter;
 
-public class NotesAdapter implements NotesLoaderCallback{
+public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback {
 
     private Activity mActivity;
     private RecyclerView mRecyclerView;
@@ -29,11 +34,9 @@ public class NotesAdapter implements NotesLoaderCallback{
     public void loadNotesToRecyclerView(RecyclerView recyclerView){
 
         this.mRecyclerView = recyclerView;
-        NotesLoaderThread notesLoaderThread = new NotesLoaderThread(this);
-        notesLoaderThread.start();
 
-        SQLiteHelper db = new SQLiteHelper(mActivity);
-        SQLiteDatabase database = db.getWritableDatabase();
+        DatabaseLoaderThread databaseLoaderThread = new DatabaseLoaderThread(mActivity, this);
+        databaseLoaderThread.start();
 
     }
 
@@ -54,6 +57,24 @@ public class NotesAdapter implements NotesLoaderCallback{
 
     }
 
+    @Override
+    public void onDatabaseLoad(List<Note> noteList) {
+
+        if(noteList.isEmpty()){
+            NotesLoaderThread notesLoaderThread = new NotesLoaderThread(mActivity, this);
+            notesLoaderThread.start();
+        } else {
+            final List<Note> mNoteList = getFilteredList(noteList);
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mRecyclerView.setAdapter(new RecyclerViewAdapter(mNoteList));
+                    Log.i("NotesAdapter","OnDataBaseLoad");
+                }
+            });
+        }
+    }
+
     private List<Note> getFilteredList(List<Note> noteList){
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
@@ -70,4 +91,6 @@ public class NotesAdapter implements NotesLoaderCallback{
 
         return list;
     }
+
+
 }
