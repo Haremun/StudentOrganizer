@@ -32,4 +32,28 @@ public class Note {
     public void setDescription(String mDescription) {
         this.mDescription = mDescription;
     }
+
+    public String getType() {
+        return mType;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public int getDate() {
+        return mDate;
+    }
+
+    public int getStartHour() {
+        return mStartHour;
+    }
+
+    public int getStopHour() {
+        return mStopHour;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
 }

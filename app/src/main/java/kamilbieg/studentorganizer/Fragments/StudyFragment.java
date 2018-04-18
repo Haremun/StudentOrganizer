@@ -3,10 +3,16 @@ package kamilbieg.studentorganizer.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Calendar;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import kamilbieg.studentorganizer.Parser.NotesAdapter;
 import kamilbieg.studentorganizer.R;
@@ -17,6 +23,7 @@ import kamilbieg.studentorganizer.R;
  */
 public class StudyFragment extends Fragment {
 
+    @BindView(R.id.my_recycler_view) RecyclerView recyclerView;
 
     public StudyFragment() {
         // Required empty public constructor
@@ -31,7 +38,11 @@ public class StudyFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         NotesAdapter notesAdapter = new NotesAdapter(getActivity());
-        notesAdapter.loadNotesToLayout(getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(null);
+        notesAdapter.loadNotesToRecyclerView(recyclerView);
 
         return view;
     }
