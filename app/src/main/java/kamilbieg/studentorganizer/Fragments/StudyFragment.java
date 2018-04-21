@@ -4,17 +4,17 @@ package kamilbieg.studentorganizer.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Calendar;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import kamilbieg.studentorganizer.Parser.NotesAdapter;
+import kamilbieg.studentorganizer.NotesAdapter;
 import kamilbieg.studentorganizer.R;
 
 
@@ -40,6 +40,7 @@ public class StudyFragment extends Fragment {
         NotesAdapter notesAdapter = new NotesAdapter(getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(null);
         notesAdapter.loadNotesToRecyclerView(recyclerView);

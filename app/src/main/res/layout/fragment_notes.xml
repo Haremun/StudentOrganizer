@@ -7,29 +7,25 @@
     tools:context=".Fragments.NotesFragment">
 
     <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:elevation="7dp"
-        app:cardCornerRadius="2dp"
-        android:layout_margin="5dp">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:minHeight="70dp"
+        android:background="@color/cardview_dark_background">
+
+        <TextView
+            android:id="@+id/text_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_foreground"
-                android:background="@color/cardview_dark_background"
-                android:layout_weight="1"
-                android:contentDescription="@string/hello_blank_fragment"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hello_blank_fragment"
-                android:layout_gravity="center"
-                android:layout_weight="1"/>
-        </LinearLayout>
+            android:text="@string/hello_blank_fragment"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_margin="0dp"
+            android:layout_gravity="center"
+            />
+
 
     </android.support.v7.widget.CardView>
 
@@ -39,6 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_add_white_24dp"
+        />
+    <include layout="@layout/fab_layout" />
 
 </RelativeLayout>

@@ -1,10 +1,9 @@
-package kamilbieg.studentorganizer.Parser;
+package kamilbieg.studentorganizer;
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,9 +15,6 @@ import java.util.Locale;
 import kamilbieg.studentorganizer.Callbacks.DatabaseLoaderCallback;
 import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
 import kamilbieg.studentorganizer.DataBase.DatabaseLoaderThread;
-import kamilbieg.studentorganizer.DataBase.DatabaseStructure;
-import kamilbieg.studentorganizer.DataBase.SQLiteHelper;
-import kamilbieg.studentorganizer.Note;
 import kamilbieg.studentorganizer.Adapters.RecyclerViewAdapter;
 
 public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback {
@@ -26,12 +22,12 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
     private Activity mActivity;
     private RecyclerView mRecyclerView;
 
-    public NotesAdapter(Activity activity){
+    public NotesAdapter(Activity activity) {
 
         this.mActivity = activity;
     }
 
-    public void loadNotesToRecyclerView(RecyclerView recyclerView){
+    public void loadNotesToRecyclerView(RecyclerView recyclerView) {
 
         this.mRecyclerView = recyclerView;
 
@@ -60,7 +56,7 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
     @Override
     public void onDatabaseLoad(List<Note> noteList) {
 
-        if(noteList.isEmpty()){
+        if (noteList.isEmpty()) {
             NotesLoaderThread notesLoaderThread = new NotesLoaderThread(mActivity, this);
             notesLoaderThread.start();
         } else {
@@ -69,22 +65,22 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
                 @Override
                 public void run() {
                     mRecyclerView.setAdapter(new RecyclerViewAdapter(mNoteList));
-                    Log.i("NotesAdapter","OnDataBaseLoad");
+                    Log.i("NotesAdapter", "OnDataBaseLoad");
                 }
             });
         }
     }
 
-    private List<Note> getFilteredList(List<Note> noteList){
+    private List<Note> getFilteredList(List<Note> noteList) {
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
         String string = simpleDateFormat.format(date);
 
         List<Note> list = new LinkedList<>();
 
-        for (Note note:
+        for (Note note :
                 noteList) {
-            if(String.valueOf(note.getDate()).equals(string)){
+            if (String.valueOf(note.getDate()).equals(string)) {
                 list.add(note);
             }
         }

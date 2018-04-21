@@ -1,4 +1,4 @@
-package kamilbieg.studentorganizer.Parser;
+package kamilbieg.studentorganizer;
 
 import android.app.Activity;
 
@@ -8,7 +8,8 @@ import java.util.List;
 
 import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
 import kamilbieg.studentorganizer.DataBase.DatabaseFunctions;
-import kamilbieg.studentorganizer.Note;
+import kamilbieg.studentorganizer.HttpConection.HttpConnection;
+import kamilbieg.studentorganizer.Parser.ICalParser;
 
 public class NotesLoaderThread extends Thread {
 

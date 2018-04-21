@@ -18,7 +18,6 @@ import kamilbieg.studentorganizer.Enums.Fragments;
 import kamilbieg.studentorganizer.Fragments.ArchFragment;
 import kamilbieg.studentorganizer.Fragments.NotesFragment;
 import kamilbieg.studentorganizer.Fragments.StudyFragment;
-import kamilbieg.studentorganizer.Parser.NotesAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

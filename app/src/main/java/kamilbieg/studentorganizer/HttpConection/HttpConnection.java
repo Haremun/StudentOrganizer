@@ -1,4 +1,4 @@
-package kamilbieg.studentorganizer.Parser;
+package kamilbieg.studentorganizer.HttpConection;
 
 import android.app.Activity;
 
