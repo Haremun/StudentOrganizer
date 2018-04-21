@@ -13,4 +13,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="add">Dodaj</string>
+    <string name="fast_dialog">Szybka notatka</string>
+    <string name="call_dialog">Zadzwoń</string>
+    <string name="call_hint">Zadzwoń do…</string>
+    <string name="phone_hint">888 888 888</string>
+    <string name="note_hint">Wpisz notatkę…</string>
 </resources>
