@@ -2,12 +2,14 @@ package kamilbieg.studentorganizer.Adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 
+import kamilbieg.studentorganizer.ViewHolders.CallCardViewHolder;
 import kamilbieg.studentorganizer.ViewHolders.FastNoteViewHolder;
 import kamilbieg.studentorganizer.ViewHolders.StudyCardViewHolder;
 import kamilbieg.studentorganizer.Note;
@@ -32,6 +34,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
                 return 0;
             case "fastNote":
                 return 1;
+            case "CallNote":
+                return 2;
             default:
                 return 0;
 
@@ -54,7 +58,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.card_view_fast_note, parent, false);
 
+                Log.i("RecyclerView", "case 1");
                 return new FastNoteViewHolder(view);
+            }
+            case 2: {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.card_view_call, parent, false);
+
+                Log.i("RecyclerView", "case 2");
+                return new CallCardViewHolder(view);
             }
             default: {
                 View view = LayoutInflater.from(parent.getContext())
@@ -84,10 +96,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
                 String tempHour = note.getStartHour();
                 String hour = tempHour.substring(0, 2) + ":" + tempHour.substring(2, 4);
                 ((StudyCardViewHolder) holder).getmHour().setText(hour);
+                break;
             }
             case 1:{
                 String text = note.getDescription();
                 ((FastNoteViewHolder) holder).getText().setText(text);
+                break;
+            }
+            case 2:{
+                String text = note.getName();
+                ((CallCardViewHolder) holder).getText().setText(text);
+                break;
             }
         }
 

@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -61,12 +62,16 @@ public class NotesFragment extends Fragment {
     @BindView(R.id.recycler_notes)
     RecyclerView recyclerViewNotes;
 
+    private AnimatedFab fab1;
+    private AnimatedFab fab2;
+    private AnimatedFab fab3;
+
 
     private Unbinder unbinder;
     private boolean btnClicked = false;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
@@ -77,6 +82,13 @@ public class NotesFragment extends Fragment {
         RecyclerViewGui recyclerViewGui = new RecyclerViewGui(getContext(), recyclerViewNotes);
         recyclerViewGui.setRecyclerView(RecyclerViewLayoutType.StaggeredGridLayout);
         notesAdapter.loadNotesToRecyclerView(recyclerViewNotes, NotesFilter.All);
+
+        fab1 = new AnimatedFab(getContext(), fab_bottom, Direction.Bottom);
+        fab2 = new AnimatedFab(getContext(), fab_center, Direction.Center);
+        fab3 = new AnimatedFab(getContext(), fab_top, Direction.Top);
+        fab1.setMoveVector(1.7, 0.25);
+        fab2.setMoveVector(1.5, 1.5);
+        fab3.setMoveVector(0.25, 1.7);
 
         return view;
     }
@@ -96,13 +108,6 @@ public class NotesFragment extends Fragment {
     @OnClick(R.id.fab_new_note)
     public void oneOfTree() {
 
-
-        AnimatedFab fab1 = new AnimatedFab(getContext(), fab_bottom, Direction.Bottom);
-        AnimatedFab fab2 = new AnimatedFab(getContext(), fab_center, Direction.Center);
-        AnimatedFab fab3 = new AnimatedFab(getContext(), fab_top, Direction.Top);
-        fab1.setMoveVector(1.7, 0.25);
-        fab2.setMoveVector(1.5, 1.5);
-        fab3.setMoveVector(0.25, 1.7);
         if (!btnClicked) {
             AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_animated_add, null);
             fab1.show();
