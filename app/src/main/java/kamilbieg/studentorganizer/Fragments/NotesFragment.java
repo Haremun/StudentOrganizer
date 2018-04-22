@@ -14,6 +14,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,11 @@ import kamilbieg.studentorganizer.AnimatedFab;
 import kamilbieg.studentorganizer.DialogFragments.CallDialog;
 import kamilbieg.studentorganizer.DialogFragments.SimpleDialog;
 import kamilbieg.studentorganizer.Enums.Direction;
+import kamilbieg.studentorganizer.Enums.NotesFilter;
+import kamilbieg.studentorganizer.Enums.RecyclerViewLayoutType;
+import kamilbieg.studentorganizer.GUI.RecyclerViewGui;
 import kamilbieg.studentorganizer.MainActivity;
+import kamilbieg.studentorganizer.NotesAdapter;
 import kamilbieg.studentorganizer.R;
 
 
@@ -52,6 +58,8 @@ public class NotesFragment extends Fragment {
     FloatingActionButton fab_center;
     @BindView(R.id.fab_top)
     FloatingActionButton fab_top;
+    @BindView(R.id.recycler_notes)
+    RecyclerView recyclerViewNotes;
 
 
     private Unbinder unbinder;
@@ -65,8 +73,18 @@ public class NotesFragment extends Fragment {
 
         unbinder = ButterKnife.bind(this, view);
 
+        NotesAdapter notesAdapter = new NotesAdapter(getActivity());
+        RecyclerViewGui recyclerViewGui = new RecyclerViewGui(getContext(), recyclerViewNotes);
+        recyclerViewGui.setRecyclerView(RecyclerViewLayoutType.StaggeredGridLayout);
+        notesAdapter.loadNotesToRecyclerView(recyclerViewNotes, NotesFilter.All);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        Log.i("NoteFragment", "onResume");
+        super.onResume();
     }
 
     @Override

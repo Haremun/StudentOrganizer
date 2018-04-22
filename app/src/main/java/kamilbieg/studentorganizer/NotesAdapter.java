@@ -3,7 +3,6 @@ package kamilbieg.studentorganizer;
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,20 +15,23 @@ import kamilbieg.studentorganizer.Callbacks.DatabaseLoaderCallback;
 import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
 import kamilbieg.studentorganizer.DataBase.DatabaseLoaderThread;
 import kamilbieg.studentorganizer.Adapters.RecyclerViewAdapter;
+import kamilbieg.studentorganizer.Enums.NotesFilter;
 
 public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback {
 
     private Activity mActivity;
     private RecyclerView mRecyclerView;
+    private NotesFilter mNotesFilter;
 
     public NotesAdapter(Activity activity) {
 
         this.mActivity = activity;
     }
 
-    public void loadNotesToRecyclerView(RecyclerView recyclerView) {
+    public void loadNotesToRecyclerView(RecyclerView recyclerView, NotesFilter notesFilter) {
 
         this.mRecyclerView = recyclerView;
+        this.mNotesFilter = notesFilter;
 
         DatabaseLoaderThread databaseLoaderThread = new DatabaseLoaderThread(mActivity, this);
         databaseLoaderThread.start();
@@ -40,7 +42,7 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
     @Override
     public void onLoad(List<Note> noteList) {
 
-        final List<Note> mNoteList = getFilteredList(noteList);
+        final List<Note> mNoteList = getFilteredList(noteList, mNotesFilter);
 
 
         mActivity.runOnUiThread(new Runnable() {
@@ -60,7 +62,7 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
             NotesLoaderThread notesLoaderThread = new NotesLoaderThread(mActivity, this);
             notesLoaderThread.start();
         } else {
-            final List<Note> mNoteList = getFilteredList(noteList);
+            final List<Note> mNoteList = getFilteredList(noteList, mNotesFilter);
             mActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -71,19 +73,29 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
         }
     }
 
-    private List<Note> getFilteredList(List<Note> noteList) {
-        Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
-        String string = simpleDateFormat.format(date);
+    private List<Note> getFilteredList(List<Note> noteList, NotesFilter notesFilter) {
 
         List<Note> list = new LinkedList<>();
+        switch (notesFilter){
+            case All:{
+                for (Note note :
+                        noteList) {
+                    if (!note.getmNoteType().equals("Study")) {
+                        list.add(note);
+                    }
+                }
+            }
+        }
+        /*Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
+        String string = simpleDateFormat.format(date);
 
         for (Note note :
                 noteList) {
             if (String.valueOf(note.getDate()).equals(string)) {
                 list.add(note);
             }
-        }
+        }*/
 
         return list;
     }

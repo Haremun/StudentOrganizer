@@ -1,10 +1,12 @@
-package kamilbieg.studentorganizer;
+package kamilbieg.studentorganizer.ViewHolders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-public class MyViewHolder extends RecyclerView.ViewHolder {
+import kamilbieg.studentorganizer.R;
+
+public class StudyCardViewHolder extends RecyclerView.ViewHolder {
 
     private TextView mName;
     private TextView mHour;
@@ -12,7 +14,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     private TextView mType;
 
 
-    public MyViewHolder(View view) {
+    public StudyCardViewHolder(View view) {
         super(view);
         mName = (TextView) view.findViewById(R.id.text_name);
         mHour = (TextView) view.findViewById(R.id.text_hour);

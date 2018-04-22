@@ -15,20 +15,24 @@ public class DatabaseFunctions {
 
         for (Note note :
                 noteList) {
-            SQLiteHelper sqLiteHelper = new SQLiteHelper(activity);
-            SQLiteDatabase db = sqLiteHelper.getWritableDatabase();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(DatabaseStructure.COLUMN_NAME_TYPE, note.getType());
-            contentValues.put(DatabaseStructure.COLUMN_NAME_NAME, note.getName());
-            contentValues.put(DatabaseStructure.COLUMN_NAME_DATE, note.getDate());
-            contentValues.put(DatabaseStructure.COLUMN_NAME_STARTHOUR, note.getStartHour());
-            contentValues.put(DatabaseStructure.COLUMN_NAME_STOPTHOUR, note.getStopHour());
-            contentValues.put(DatabaseStructure.COLUMN_NAME_DESC, note.getDescription());
-            contentValues.put(DatabaseStructure.COLUMN_NAME_NOTETYPE, note.getmNoteType());
-
-            Log.i("Database", note.getStartHour());
-            db.insert(DatabaseStructure.TABLE_NAME, null, contentValues);
+            addNoteToDatabase(activity, note);
         }
 
+    }
+
+    public void addNoteToDatabase(Activity activity, Note note){
+
+        SQLiteHelper sqLiteHelper = new SQLiteHelper(activity);
+        SQLiteDatabase db = sqLiteHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseStructure.COLUMN_NAME_TYPE, note.getType());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_NAME, note.getName());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_DATE, note.getDate());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_STARTHOUR, note.getStartHour());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_STOPTHOUR, note.getStopHour());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_DESC, note.getDescription());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_NOTETYPE, note.getmNoteType());
+
+        db.insert(DatabaseStructure.TABLE_NAME, null, contentValues);
     }
 }
