@@ -1,4 +1,4 @@
-package kamilbieg.studentorganizer.DataBase;
+package kamilbieg.studentorganizer.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

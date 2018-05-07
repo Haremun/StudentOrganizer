@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
-import kamilbieg.studentorganizer.DataBase.DatabaseFunctions;
+import kamilbieg.studentorganizer.Database.DatabaseFunctions;
 import kamilbieg.studentorganizer.HttpConection.HttpConnection;
 import kamilbieg.studentorganizer.Parser.ICalParser;
 

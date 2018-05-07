@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:background="@color/colorAccent">
+        android:background="#91DC5A">
         <TextView
             android:id="@+id/text_call_person"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_call"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:text="@string/call_hint"
-            android:layout_weight="2"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
         <ImageView
+            android:id="@+id/img_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_call_answer"
-            android:layout_weight="1"
-            android:background="#0000"
+            app:layout_constraintStart_toEndOf="@id/text_call_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_phone"
             android:contentDescription="@string/call_hint" />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

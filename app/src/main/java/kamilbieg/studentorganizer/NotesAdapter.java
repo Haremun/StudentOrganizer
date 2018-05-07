@@ -13,7 +13,7 @@ import java.util.Locale;
 
 import kamilbieg.studentorganizer.Callbacks.DatabaseLoaderCallback;
 import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
-import kamilbieg.studentorganizer.DataBase.DatabaseLoaderThread;
+import kamilbieg.studentorganizer.Database.DatabaseLoaderThread;
 import kamilbieg.studentorganizer.Adapters.RecyclerViewAdapter;
 import kamilbieg.studentorganizer.Enums.NotesFilter;
 
@@ -80,22 +80,25 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
             case All:{
                 for (Note note :
                         noteList) {
-                    if (!note.getmNoteType().equals("Study")) {
+                    if (!note.getNoteType().equals("Study")) {
                         list.add(note);
                     }
                 }
+                break;
+            }
+            case Study:{
+                for (Note note :
+                        noteList) {
+                    Date date = Calendar.getInstance().getTime();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
+                    String string = simpleDateFormat.format(date);
+                    if (note.getNoteType().equals("Study") && note.getStartDate().equals(string)) {
+                        list.add(note);
+                    }
+                }
+                break;
             }
         }
-        /*Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
-        String string = simpleDateFormat.format(date);
-
-        for (Note note :
-                noteList) {
-            if (String.valueOf(note.getDate()).equals(string)) {
-                list.add(note);
-            }
-        }*/
 
         return list;
     }

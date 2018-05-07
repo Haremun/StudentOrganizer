@@ -17,35 +17,51 @@ public class ICalParser {
         List<Note> noteList = new LinkedList<>();
         String line;
         Note temp = null;
+        String[] noteValues = new String[7];;
         int count = 0;
+
         while ((line = bufferedReader.readLine()) != null){
 
 
             if(line.length() > 11){
                 if(line.substring(0, 12).equals("BEGIN:VEVENT")){
                     temp = new Note();
-                    temp.setmNoteType("Study"); //Note from student schedule
+                    noteValues[0] = "Study";
+                    //temp.setNoteType("Study"); //Note from student schedule
                     count = 0;
                     Log.i("ICalParser", "New Object------------------");
                     continue;
                 }
             }
             if(count == 0 && temp != null){
-                temp.setType(line.substring(8, 11));
-                temp.setName(line.substring(14, line.length()));
+                noteValues[1] = line.substring(8, 11);
+                noteValues[2] = line.substring(14, line.length());
+                //temp.setType(line.substring(8, 11));
+                //temp.setName(line.substring(14, line.length()));
                 Log.i("ICalParser", line.substring(14, line.length()));
-                //Log.i("ICalParser", tempString.length()+"");
+
             } else if(count == 1 && temp != null){
-                temp.setDate(line.substring(24, 32));
-                temp.setStartHour(line.substring(33, line.length()));
+                noteValues[3] = line.substring(24, 32);
+                noteValues[4] = line.substring(33, line.length());
                 Log.i("ICalParser", line.substring(33, line.length()));
             } else if(count == 2 && temp != null){
-                temp.setStopHour(line.substring(31, line.length()));
+                noteValues[5] = line.substring(31, line.length());
                 Log.i("ICalParser", line.substring(31, line.length()));
 
             } else if(count == 5 && temp != null){
-                temp.setDescription(line.substring(12, line.indexOf("n") - 1));
+                noteValues[6] = line.substring(12, line.indexOf("n") - 1);
                 Log.i("ICalParser", line.substring(12, line.indexOf("n") - 1));
+                temp = Note.builder()
+                        .noteType("Study")
+                        .classType(noteValues[1])
+                        .name(noteValues[2])
+                        .startDate(noteValues[3])
+                        .endDate(noteValues[3])
+                        .startHour(noteValues[4])
+                        .endHour(noteValues[5])
+                        .description(noteValues[6])
+                        .build();
+
                 noteList.add(temp);
             }
 

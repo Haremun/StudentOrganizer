@@ -1,4 +1,4 @@
-package kamilbieg.studentorganizer.DataBase;
+package kamilbieg.studentorganizer.Database;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import kamilbieg.studentorganizer.Callbacks.DatabaseLoaderCallback;
-import kamilbieg.studentorganizer.Callbacks.NotesLoaderCallback;
 import kamilbieg.studentorganizer.Note;
 
 public class DatabaseLoaderThread extends Thread {
@@ -38,14 +37,16 @@ public class DatabaseLoaderThread extends Thread {
         List<Note> noteList = new LinkedList<>();
         while (cursor.moveToNext()){
 
-            Note tempNote = new Note();
-            tempNote.setType(cursor.getString(1));
-            tempNote.setName(cursor.getString(2));
-            tempNote.setDate(cursor.getString(3));
-            tempNote.setStartHour(cursor.getString(4));
-            tempNote.setStopHour(cursor.getString(5));
-            tempNote.setDescription(cursor.getString(6));
-            tempNote.setmNoteType(cursor.getString(7));
+            Note tempNote = Note.builder()
+                    .classType(cursor.getString(1))
+                    .name(cursor.getString(2))
+                    .startDate(cursor.getString(3))
+                    .endDate(cursor.getString(4))
+                    .startHour(cursor.getString(5))
+                    .endHour(cursor.getString(6))
+                    .description(cursor.getString(7))
+                    .noteType(cursor.getString(8))
+                    .build();
 
             noteList.add(tempNote);
         }

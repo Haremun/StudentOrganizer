@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">StudyNote</string>
+    <string name="app_name">StudentNote</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">Kamil Biegański Production</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -20,4 +20,6 @@
     <string name="call_hint">Zadzwoń do…</string>
     <string name="phone_hint">888 888 888</string>
     <string name="note_hint">Wpisz notatkę…</string>
+    <string name="_15">15</string>
+    <string name="lis">lis</string>
 </resources>

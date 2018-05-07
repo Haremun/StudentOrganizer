@@ -2,9 +2,10 @@ package kamilbieg.studentorganizer;
 
 public class Note {
 
-    private String mType = "";
+    private String mClassType = "";
     private String mName = "";
-    private String mDate = "";
+    private String mStartDate = "";
+    private String mEndDate = "";
     private String mStartHour = "";
     private String mStopHour = "";
     private String mDescription = "";
@@ -14,55 +15,31 @@ public class Note {
         return new Builder();
     }
 
-    public void setType(String type){
-        mType = type;
-    }
-
-    public void setName(String mName) {
-        this.mName = mName;
-    }
-
-    public void setDate(String mDate) {
-        this.mDate = mDate;
-    }
-
-    public void setStartHour(String mStartHour) {
-        this.mStartHour = mStartHour;
-    }
-
-    public void setStopHour(String mStopHour) {
-        this.mStopHour = mStopHour;
-    }
-
-    public void setDescription(String mDescription) {
-        this.mDescription = mDescription;
-    }
-
-    public void setmNoteType(String mNoteType) {
-        this.mNoteType = mNoteType;
-    }
-
-    public String getmNoteType() {
+    public String getNoteType() {
         return mNoteType;
     }
 
-    public String getType() {
-        return mType;
+    public String getClassType() {
+        return mClassType;
     }
 
     public String getName() {
         return mName;
     }
 
-    public String getDate() {
-        return mDate;
+    public String getStartDate() {
+        return mStartDate;
+    }
+
+    public String getEndDate() {
+        return mEndDate;
     }
 
     public String getStartHour() {
         return mStartHour;
     }
 
-    public String getStopHour() {
+    public String getEndHour() {
         return mStopHour;
     }
 
@@ -72,31 +49,36 @@ public class Note {
 
     public static final class Builder {
 
-        private String mType = "";
+        private String mClassType = "";
         private String mName = "";
-        private String mDate = "";
+        private String mStartDate = "";
+        private String mEndDate = "";
         private String mStartHour = "";
         private String mStopHour = "";
         private String mDescription = "";
         private String mNoteType = "";
 
-        public Builder type(String type){
-            this.mType = type;
+        public Builder classType(String type){
+            this.mClassType = type;
             return this;
         }
         public Builder name(String name){
             this.mName = name;
             return this;
         }
-        public Builder date(String date){
-            this.mDate = date;
+        public Builder startDate(String date){
+            this.mStartDate = date;
+            return this;
+        }
+        public Builder endDate(String date){
+            this.mEndDate = date;
             return this;
         }
         public Builder startHour(String start){
             this.mStartHour = start;
             return this;
         }
-        public Builder stopHour(String stop){
+        public Builder endHour(String stop){
             this.mStopHour = stop;
             return this;
         }
@@ -112,9 +94,10 @@ public class Note {
         public Note build(){
 
             Note note = new Note();
-            note.mType = this.mType;
+            note.mClassType = this.mClassType;
             note.mName = this.mName;
-            note.mDate = this.mDate;
+            note.mStartDate = this.mStartDate;
+            note.mEndDate = this.mEndDate;
             note.mStartHour = this.mStartHour;
             note.mStopHour = this.mStopHour;
             note.mDescription = this.mDescription;

@@ -2,7 +2,6 @@ package kamilbieg.studentorganizer.Fragments;
 
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.media.AudioManager;
 import android.os.Build;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -35,7 +33,6 @@ import kamilbieg.studentorganizer.Enums.Direction;
 import kamilbieg.studentorganizer.Enums.NotesFilter;
 import kamilbieg.studentorganizer.Enums.RecyclerViewLayoutType;
 import kamilbieg.studentorganizer.GUI.RecyclerViewGui;
-import kamilbieg.studentorganizer.MainActivity;
 import kamilbieg.studentorganizer.NotesAdapter;
 import kamilbieg.studentorganizer.R;
 

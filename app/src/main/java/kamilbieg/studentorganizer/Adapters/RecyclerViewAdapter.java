@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        switch (mNoteList.get(position).getmNoteType()) {
+        switch (mNoteList.get(position).getNoteType()) {
             case "Study":
                 return 0;
             case "fastNote":
@@ -85,12 +85,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
         switch (holder.getItemViewType()) {
             case 0: {
-                String type = note.getType();
-                if (type.equals("WYK"))
+                String classType = note.getClassType();
+                if (classType.equals("WYK"))
                     ((StudyCardViewHolder) holder).getmType().setTextColor(0xFF3030F0);
                 else
                     ((StudyCardViewHolder) holder).getmType().setTextColor(0xFFF03030);
-                ((StudyCardViewHolder) holder).getmType().setText(type);
+                ((StudyCardViewHolder) holder).getmType().setText(classType);
                 ((StudyCardViewHolder) holder).getmDesc().setText(note.getDescription());
                 ((StudyCardViewHolder) holder).getmName().setText(note.getName());
                 String tempHour = note.getStartHour();
@@ -105,6 +105,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             }
             case 2:{
                 String text = note.getName();
+                ((CallCardViewHolder) holder).setNumber(note.getDescription());
                 ((CallCardViewHolder) holder).getText().setText(text);
                 break;
             }

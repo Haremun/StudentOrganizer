@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import java.util.Objects;
 
-import kamilbieg.studentorganizer.DataBase.DatabaseFunctions;
+import kamilbieg.studentorganizer.Database.DatabaseFunctions;
 import kamilbieg.studentorganizer.Note;
 import kamilbieg.studentorganizer.R;
 

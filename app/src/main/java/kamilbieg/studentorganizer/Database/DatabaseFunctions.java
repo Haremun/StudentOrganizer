@@ -1,9 +1,8 @@
-package kamilbieg.studentorganizer.DataBase;
+package kamilbieg.studentorganizer.Database;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.List;
 
@@ -25,13 +24,14 @@ public class DatabaseFunctions {
         SQLiteHelper sqLiteHelper = new SQLiteHelper(activity);
         SQLiteDatabase db = sqLiteHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseStructure.COLUMN_NAME_TYPE, note.getType());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_CLASS_TYPE, note.getClassType());
         contentValues.put(DatabaseStructure.COLUMN_NAME_NAME, note.getName());
-        contentValues.put(DatabaseStructure.COLUMN_NAME_DATE, note.getDate());
-        contentValues.put(DatabaseStructure.COLUMN_NAME_STARTHOUR, note.getStartHour());
-        contentValues.put(DatabaseStructure.COLUMN_NAME_STOPTHOUR, note.getStopHour());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_START_DATE, note.getStartDate());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_END_DATE, note.getEndDate());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_START_HOUR, note.getStartHour());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_END_HOUR, note.getEndHour());
         contentValues.put(DatabaseStructure.COLUMN_NAME_DESC, note.getDescription());
-        contentValues.put(DatabaseStructure.COLUMN_NAME_NOTETYPE, note.getmNoteType());
+        contentValues.put(DatabaseStructure.COLUMN_NAME_NOTE_TYPE, note.getNoteType());
 
         db.insert(DatabaseStructure.TABLE_NAME, null, contentValues);
     }
