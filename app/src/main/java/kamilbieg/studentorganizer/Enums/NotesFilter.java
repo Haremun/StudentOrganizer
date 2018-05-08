@@ -6,5 +6,6 @@ public enum NotesFilter {
     CallNotes,
     NotificationNotes,
     ShoppingLists,
-    Study
+    StudyToday,
+    StudyWeek
 }

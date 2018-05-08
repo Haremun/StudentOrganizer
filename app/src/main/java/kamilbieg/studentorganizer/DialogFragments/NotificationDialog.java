@@ -3,9 +3,19 @@ package kamilbieg.studentorganizer.DialogFragments;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+
+import java.util.Objects;
+
+import kamilbieg.studentorganizer.Database.DatabaseFunctions;
+import kamilbieg.studentorganizer.Note;
+import kamilbieg.studentorganizer.R;
 
 public class NotificationDialog extends DialogFragment {
 
@@ -15,6 +25,24 @@ public class NotificationDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_notification, null);
+        final EditText editText = view.findViewById(R.id.edit_fast_note);
+
+        builder.setView(view)
+                .setTitle(getResources().getString(R.string.notif_dialog))
+                .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Note note = Note.builder()
+                                .noteType("NotificationNote")
+                                .description(editText.getText().toString())
+                                .build();
+                        DatabaseFunctions databaseFunctions = new DatabaseFunctions();
+                        databaseFunctions.addNoteToDatabase(getActivity(), note);
+                    }
+                });
 
         return builder.create();
     }

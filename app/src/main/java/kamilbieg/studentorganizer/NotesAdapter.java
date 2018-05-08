@@ -86,7 +86,8 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
                 }
                 break;
             }
-            case Study:{
+            case StudyToday:{
+
                 for (Note note :
                         noteList) {
                     Date date = Calendar.getInstance().getTime();
@@ -96,6 +97,14 @@ public class NotesAdapter implements NotesLoaderCallback, DatabaseLoaderCallback
                         list.add(note);
                     }
                 }
+
+                break;
+            }
+            case StudyWeek:{
+                Date date = Calendar.getInstance().getTime();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("u", Locale.US);
+                String string = simpleDateFormat.format(date);
+                //date.before()
                 break;
             }
         }

@@ -28,6 +28,7 @@ import butterknife.OnLongClick;
 import butterknife.Unbinder;
 import kamilbieg.studentorganizer.AnimatedFab;
 import kamilbieg.studentorganizer.DialogFragments.CallDialog;
+import kamilbieg.studentorganizer.DialogFragments.NotificationDialog;
 import kamilbieg.studentorganizer.DialogFragments.SimpleDialog;
 import kamilbieg.studentorganizer.Enums.Direction;
 import kamilbieg.studentorganizer.Enums.NotesFilter;
@@ -77,7 +78,7 @@ public class NotesFragment extends Fragment {
 
         NotesAdapter notesAdapter = new NotesAdapter(getActivity());
         RecyclerViewGui recyclerViewGui = new RecyclerViewGui(getContext(), recyclerViewNotes);
-        recyclerViewGui.setRecyclerView(RecyclerViewLayoutType.StaggeredGridLayout);
+        recyclerViewGui.setRecyclerView(RecyclerViewLayoutType.StaggeredGridLayout );
         notesAdapter.loadNotesToRecyclerView(recyclerViewNotes, NotesFilter.All);
 
         fab1 = new AnimatedFab(getContext(), fab_bottom, Direction.Bottom);
@@ -155,6 +156,10 @@ public class NotesFragment extends Fragment {
             case R.id.fab_center:
                 DialogFragment callDialog = new CallDialog();
                 callDialog.show(Objects.requireNonNull(getFragmentManager()), "CallDialog");
+                break;
+            case R.id.fab_top:
+                DialogFragment notificationDialog = new NotificationDialog();
+                notificationDialog.show(Objects.requireNonNull(getFragmentManager()), "NotificationDialog");
         }
     }
 

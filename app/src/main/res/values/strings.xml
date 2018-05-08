@@ -17,6 +17,7 @@
     <string name="add">Dodaj</string>
     <string name="fast_dialog">Szybka notatka</string>
     <string name="call_dialog">Zadzwoń</string>
+    <string name="notif_dialog">Notatka z datą</string>
     <string name="call_hint">Zadzwoń do…</string>
     <string name="phone_hint">888 888 888</string>
     <string name="note_hint">Wpisz notatkę…</string>

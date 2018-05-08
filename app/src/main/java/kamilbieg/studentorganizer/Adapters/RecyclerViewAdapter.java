@@ -11,6 +11,7 @@ import java.util.List;
 
 import kamilbieg.studentorganizer.ViewHolders.CallCardViewHolder;
 import kamilbieg.studentorganizer.ViewHolders.FastNoteViewHolder;
+import kamilbieg.studentorganizer.ViewHolders.NotificationNoteViewHolder;
 import kamilbieg.studentorganizer.ViewHolders.StudyCardViewHolder;
 import kamilbieg.studentorganizer.Note;
 import kamilbieg.studentorganizer.R;
@@ -30,12 +31,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         switch (mNoteList.get(position).getNoteType()) {
-            case "Study":
+            case "StudyToday":
                 return 0;
             case "fastNote":
                 return 1;
             case "CallNote":
                 return 2;
+            case "NotificationNote":
+                return 3;
             default:
                 return 0;
 
@@ -67,6 +70,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
                 Log.i("RecyclerView", "case 2");
                 return new CallCardViewHolder(view);
+            }
+            case 3: {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.card_view_notification, parent, false);
+
+                Log.i("RecyclerView", "case 3");
+                return new NotificationNoteViewHolder(view);
             }
             default: {
                 View view = LayoutInflater.from(parent.getContext())
@@ -107,6 +117,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
                 String text = note.getName();
                 ((CallCardViewHolder) holder).setNumber(note.getDescription());
                 ((CallCardViewHolder) holder).getText().setText(text);
+                break;
+            }
+            case 3:{
+                String text = note.getDescription();
+                ((NotificationNoteViewHolder) holder).getText().setText(text);
                 break;
             }
         }
