@@ -2,6 +2,7 @@ package kamilbieg.studentorganizer.Fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.media.AudioManager;
 import android.os.Build;
@@ -41,13 +42,11 @@ import kamilbieg.studentorganizer.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotesFragment extends Fragment {
-
+public class NotesFragment extends Fragment{
 
     public NotesFragment() {
         // Required empty public constructor
     }
-
 
     @BindView(R.id.fab_new_note)
     FloatingActionButton fabNewNote;
@@ -104,7 +103,7 @@ public class NotesFragment extends Fragment {
     }
 
     @OnClick(R.id.fab_new_note)
-    public void oneOfTree() {
+    public void showFab() {
 
         if (!btnClicked) {
             AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_animated_add, null);
@@ -143,6 +142,7 @@ public class NotesFragment extends Fragment {
             }
 
             DialogFragment simpleDialog = new SimpleDialog();
+            simpleDialog.setTargetFragment(this, 1);
             simpleDialog.show(Objects.requireNonNull(getFragmentManager()), "SimpleDialog");
         }
         return true;
@@ -155,13 +155,25 @@ public class NotesFragment extends Fragment {
         switch (fab.getId()){
             case R.id.fab_center:
                 DialogFragment callDialog = new CallDialog();
+                callDialog.setTargetFragment(this, 1);
+                callDialog.setTargetFragment(this, 1);
                 callDialog.show(Objects.requireNonNull(getFragmentManager()), "CallDialog");
                 break;
             case R.id.fab_top:
                 DialogFragment notificationDialog = new NotificationDialog();
+                notificationDialog.setTargetFragment(this, 1);
                 notificationDialog.show(Objects.requireNonNull(getFragmentManager()), "NotificationDialog");
+                break;
         }
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        NotesAdapter notesAdapter = new NotesAdapter(getActivity());
+        RecyclerViewGui recyclerViewGui = new RecyclerViewGui(getContext(), recyclerViewNotes);
+        recyclerViewGui.setRecyclerView(RecyclerViewLayoutType.StaggeredGridLayout );
+        notesAdapter.loadNotesToRecyclerView(recyclerViewNotes, NotesFilter.All);
+        showFab();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

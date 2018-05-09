@@ -1,6 +1,7 @@
 package kamilbieg.studentorganizer.DialogFragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -43,6 +44,7 @@ public class CallDialog extends DialogFragment {
                                 .build();
                         DatabaseFunctions databaseFunctions = new DatabaseFunctions();
                         databaseFunctions.addNoteToDatabase(getActivity(), note);
+                        DialogFunctions.notifyToTarget(Activity.RESULT_OK, CallDialog.this);
                     }
                 });
 

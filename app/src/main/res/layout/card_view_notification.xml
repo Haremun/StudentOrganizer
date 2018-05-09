@@ -16,6 +16,7 @@
             android:layout_gravity="center_vertical"
             android:padding="5dp">
             <TextView
+                android:id="@+id/text_day_of_the_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/_15"
@@ -23,6 +24,7 @@
                 android:textStyle="bold"
                 android:layout_marginEnd="3dp"/>
             <TextView
+                android:id="@+id/text_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lis"

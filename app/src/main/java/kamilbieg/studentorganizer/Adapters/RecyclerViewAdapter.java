@@ -108,20 +108,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
                 ((StudyCardViewHolder) holder).getmHour().setText(hour);
                 break;
             }
-            case 1:{
+            case 1: {
                 String text = note.getDescription();
                 ((FastNoteViewHolder) holder).getText().setText(text);
                 break;
             }
-            case 2:{
+            case 2: {
                 String text = note.getName();
                 ((CallCardViewHolder) holder).setNumber(note.getDescription());
                 ((CallCardViewHolder) holder).getText().setText(text);
                 break;
             }
-            case 3:{
+            case 3: {
                 String text = note.getDescription();
                 ((NotificationNoteViewHolder) holder).getText().setText(text);
+                if (note.getEndDate().length() > 7)
+                    ((NotificationNoteViewHolder) holder).getTextDayOfTheYear().setText(note.getEndDate().substring(6, 8));
+                //((NotificationNoteViewHolder) holder).getTextMonth().setText(text);
                 break;
             }
         }

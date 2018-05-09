@@ -1,6 +1,7 @@
 package kamilbieg.studentorganizer.DialogFragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 
@@ -8,6 +9,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,15 +46,13 @@ public class SimpleDialog extends DialogFragment {
                                 .build();
                         DatabaseFunctions databaseFunctions = new DatabaseFunctions();
                         databaseFunctions.addNoteToDatabase(getActivity(), note);
+                        DialogFunctions.notifyToTarget(Activity.RESULT_OK, SimpleDialog.this);
                     }
                 });
 
         return builder.create();
     }
 
-    @Override
-    public void onDestroy() {
-        Log.i("SimpleDialog","onDestroy");
-        super.onDestroy();
-    }
+
+
 }
